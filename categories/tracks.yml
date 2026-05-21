@@ -167,6 +167,123 @@ requests:
       409:
         - Если указанное видео уже есть в базе данных
 
+
+  preview_spotify:
+    mark: 'V'
+    name: 'Превью публикации с Spotify'
+    link: '[POST] /track/preview/spotify?albumId=[ID]'
+    description: 'Возвращает сериализованный альбом в формате Spotify или пустой объект, если этот альбом уже загружен.'
+
+    request: '/track/preview/spotify?albumId=1jcQkQcKSc21PdloFz792Y'
+    response:
+      - id: 5eoeH47ABbUEbx0vNn4k4s
+        authors:
+        - id: 7M6ERyNXeDalOonDdWWd6I
+          name: Гражданская Оборона
+        link: https://api.spotify.com/v1/tracks/5eoeH47ABbUEbx0vNn4k4s
+        album:
+          id: 1jcQkQcKSc21PdloFz792Y
+          name: Зачем снятся сны
+          link: https://api.spotify.com/v1/albums/1jcQkQcKSc21PdloFz792Y
+          imageUrl: https://i.scdn.co/image/ab67616d0000b273045d54f5801e148cb1afc443
+        name: Слава психонавтам
+      - id: 1K0EhvPUlGVZgHwaB2fN4G
+        authors:
+        - id: 7M6ERyNXeDalOonDdWWd6I
+          name: Гражданская Оборона
+        link: https://api.spotify.com/v1/tracks/1K0EhvPUlGVZgHwaB2fN4G
+        album:
+          id: 1jcQkQcKSc21PdloFz792Y
+          name: Зачем снятся сны
+          link: https://api.spotify.com/v1/albums/1jcQkQcKSc21PdloFz792Y
+          imageUrl: https://i.scdn.co/image/ab67616d0000b273045d54f5801e148cb1afc443
+        name: Кто-то другой
+
+
+  upload_spotify:
+    mark: 'V'
+    name: 'Опубликовать с Spotify'
+    link: '[POST] /track/upload/spotify?albumId=[ID]'
+    description: 'Возвращает списком сериализованные треки.'
+
+    request: '/track/upload/spotify?albumId=1jcQkQcKSc21PdloFz792Y'
+    response:
+      - id: 1
+        name: 'Я ПЫЛЬ'
+        authors: ['MORGENSHTERN']
+        authorsIds: [1]
+        imageUrl: '1'
+        backgroundColor: 16777215
+        link: 'https://music.yandex.ru/album/9647864/'
+      - id: 400
+        name: 'Спортивные очки'
+        authors: ['Буерак']
+        authorsIds: [1]
+        imageUrl: '398'
+        backgroundColor: 16777215
+        link: 'https://music.yandex.ru/album/5512081/'
+
+    regex:
+      ID: '\d+'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      202:
+        - Если трек был добавлен в базу данных, но что-то пошло не так при сохранении изображении
+      400:
+        - Если некорректно указан ID
+      404:
+        - Если альбом с указанным ID не найден в Spotify
+      409:
+        - Если указанный альбом уже есть в базе данных
+
+  get_spotify:
+    mark: 'M'
+    name: 'Получить с Spotify'
+    link: '[GET] /track/get/spotify?id=[IDS]'
+
+    request: '/track/get/spotify?id=0YgYOcZ8K6mnU4l4BjvOaq,1A3OSIdgOnfwphenmn2vc8'
+    response:
+      - id: 0YgYOcZ8K6mnU4l4BjvOaq
+        authors:
+        - id: 49UiD9IBopGUJrJy7kBpIm
+          name: ЗАМАЙ
+        link: https://api.spotify.com/v1/tracks/0YgYOcZ8K6mnU4l4BjvOaq
+        album:
+          id: 2wB5z68Vpe3j4dNyzr9xOM
+          name: Андрей
+          link: https://api.spotify.com/v1/albums/2wB5z68Vpe3j4dNyzr9xOM
+          imageUrl: https://i.scdn.co/image/ab67616d0000b273b4e2e39fed817937931d478e
+        name: Замай
+      - id: 69UYad9FknVJ9jL4kzwxeI
+        authors:
+        - id: 49UiD9IBopGUJrJy7kBpIm
+          name: ЗАМАЙ
+        - id: 7fMhppMTr3ElTOEJqSbkEq
+          name: Слава КПСС
+        - id: 0yp6xP5xe1qarfugfTixOK
+          name: Монеточка
+        - id: 6a5dhhVg61QjA7kMDLFSqt
+          name: Овсянкин
+        link: https://api.spotify.com/v1/tracks/69UYad9FknVJ9jL4kzwxeI
+        album:
+          id: 6W8qCDryxaAEyIMILdUN0U
+          name: HYPE TRAIN (Mixtape)
+          link: https://api.spotify.com/v1/albums/6W8qCDryxaAEyIMILdUN0U
+          imageUrl: https://i.scdn.co/image/ab67616d0000b2739166662a5bdf1c90a3f93656
+        name: Покемоны мои
+
+    regex:
+      IDS: '[a-zA-Z0-9]+(?:,[a-zA-Z0-9]+){0, 99}'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      400:
+        - Если некорректно указаны ID
+
+
 #  get_popular_mashups:
 #    name: 'Получить популярные мэшапы с этим треком'
 #    link: '[GET] /track/get_popular_mashups?id=[ID]'

@@ -15,6 +15,8 @@ requests:
       permissions: 1
       mashups: []
       playlists: [1, 2, 3]
+      alterEgos: []
+      alterEgosIds: []
 
     regex:
       ID: '\d+'
@@ -47,13 +49,17 @@ requests:
         permissions: 1
         mashups: []
         playlists: [1, 2, 3]
+        alterEgos: []
+        alterEgosIds: []
       - id: 2
         username: 'LeonidM'
         imageUrl: '2'
         backgroundColor: 16777215
         permissions: 1
         mashups: [1, 2, 3, 4]
-        playlist: []
+        playlists: []
+        alterEgos: ['MdinoeL']
+        alterEgosIds: [3]
 
     regex:
       IDS: '\d+(?:,\d+){0, 99}'
@@ -127,6 +133,8 @@ requests:
       permissions: 1
       mashups: []
       playlists: [1, 2, 3]
+      alterEgos: []
+      alterEgosIds: []
 
     codes:
       200:

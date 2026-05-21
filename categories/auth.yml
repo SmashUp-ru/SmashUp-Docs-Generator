@@ -52,6 +52,10 @@ requests:
       backgroundColor: 16777215
       permissions: 0
       token: 'd404f899-eac6-4355-a651-1a8daef84550'
+      mashups: []
+      playlists: []
+      alterEgos: []
+      alterEgosIds: []
 
     regex:
       username: '(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{2,32}$)(?!^\d+$)^.+$'
@@ -79,6 +83,10 @@ requests:
       backgroundColor: 16777215
       permissions: 7
       token: 'd404f899-eac6-4355-a651-1a8daef84550'
+      mashups: []
+      playlists: []
+      alterEgos: []
+      alterEgosIds: []
 
     regex:
       ID: '{UUID RegEx}'
@@ -91,6 +99,57 @@ requests:
       500:
         - Если произошла ошибка при создании пользователя
 
+
+  register_alter_ego:
+    mark: 'V'
+    name: 'Зарегистрировать альтер-эго'
+    link: '[POST] /register/alter_ego?name=[USERNAME]'
+
+    regex:
+      username: '(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{2,32}$)(?!^\d+$)^.+$'
+
+    response:
+      id: 100
+      username: 'AlterEgo'
+      imageUrl: 'default'
+      backgroundColor: 16777215
+      permissions: 0
+      token: 'd404f899-eac6-4355-a651-1a8daef84550'
+      mashups: []
+      playlists: []
+      alterEgos: []
+      alterEgosIds: []
+
+    codes:
+      200:
+        - Если альтер-эго было зарегистрировано
+      400:
+        - Если отправлен некорректный никнейм
+
+  login_alter_ego:
+    name: 'Авторизация альтер-эго'
+    link: '[POST] /login/alter_ego?name=[USERNAME]'
+
+    regex:
+      username: '(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{2,32}$)(?!^\d+$)^.+$'
+
+    response:
+      id: 100
+      username: 'AlterEgo'
+      imageUrl: 'default'
+      backgroundColor: 16777215
+      permissions: 0
+      token: 'd404f899-eac6-4355-a651-1a8daef84550'
+      mashups: []
+      playlists: []
+      alterEgos: []
+      alterEgosIds: []
+
+    codes:
+      200:
+        - Если альтер-эго было зарегистрировано
+      400:
+        - Если отправлен некорректный никнейм
 
   vk_authorize_url:
     name: 'Получить ссылку для авторизации через VK'

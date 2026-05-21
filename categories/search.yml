@@ -69,6 +69,53 @@ requests:
         - Если указан некорректный поисковый запрос
 
 
+  tracks_spotify:
+    mark: 'T'
+    name: 'Треков в Spotify'
+    link: '[GET] /track/search/spotify?query=[SEARCH_QUERY]'
+    description: 'Возвращает списком сериализованные треки в формате Spotify, максимум 25.'
+
+    request: '/track/search/yandex_music?query=замай'
+    response:
+      - id: 0YgYOcZ8K6mnU4l4BjvOaq
+        authors:
+        - id: 49UiD9IBopGUJrJy7kBpIm
+          name: ЗАМАЙ
+        link: https://api.spotify.com/v1/tracks/0YgYOcZ8K6mnU4l4BjvOaq
+        album:
+          id: 2wB5z68Vpe3j4dNyzr9xOM
+          name: Андрей
+          link: https://api.spotify.com/v1/albums/2wB5z68Vpe3j4dNyzr9xOM
+          imageUrl: https://i.scdn.co/image/ab67616d0000b273b4e2e39fed817937931d478e
+        name: Замай
+      - id: 69UYad9FknVJ9jL4kzwxeI
+        authors:
+        - id: 49UiD9IBopGUJrJy7kBpIm
+          name: ЗАМАЙ
+        - id: 7fMhppMTr3ElTOEJqSbkEq
+          name: Слава КПСС
+        - id: 0yp6xP5xe1qarfugfTixOK
+          name: Монеточка
+        - id: 6a5dhhVg61QjA7kMDLFSqt
+          name: Овсянкин
+        link: https://api.spotify.com/v1/tracks/69UYad9FknVJ9jL4kzwxeI
+        album:
+          id: 6W8qCDryxaAEyIMILdUN0U
+          name: HYPE TRAIN (Mixtape)
+          link: https://api.spotify.com/v1/albums/6W8qCDryxaAEyIMILdUN0U
+          imageUrl: https://i.scdn.co/image/ab67616d0000b2739166662a5bdf1c90a3f93656
+        name: Покемоны мои
+
+    regex:
+      SEARCH_QUERY: '.+{2,32}'
+
+    codes:
+      200:
+        - Если всё хорошо и слава тебе, Господи
+      400:
+        - Если указан некорректный поисковый запрос
+
+
   mashups:
 #    mark: 'T'
     name: 'Мэшапов'
@@ -171,11 +218,19 @@ requests:
         imageUrl: 'default'
         backgroundColor: 16777215
         permissions: 0
+        mashups: []
+        playlists: []
+        alterEgos: []
+        alterEgosIds: []
       - id: 2463
         username: 'Deep Space Audio'
         imageUrl: '2463'
         backgroundColor: 16777215
         permissions: 76
+        mashups: []
+        playlists: []
+        alterEgos: []
+        alterEgosIds: []
 
     regex:
       SEARCH_QUERY: '.+{2,32}'

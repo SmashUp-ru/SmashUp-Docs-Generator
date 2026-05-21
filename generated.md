@@ -206,7 +206,11 @@
           "imageUrl": "default",
           "backgroundColor": 16777215,
           "permissions": 0,
-          "token": "d404f899-eac6-4355-a651-1a8daef84550"
+          "token": "d404f899-eac6-4355-a651-1a8daef84550",
+          "mashups": [],
+          "playlists": [],
+          "alterEgos": [],
+          "alterEgosIds": []
       }
       ```
 
@@ -245,13 +249,91 @@
           "imageUrl": "default",
           "backgroundColor": 16777215,
           "permissions": 7,
-          "token": "d404f899-eac6-4355-a651-1a8daef84550"
+          "token": "d404f899-eac6-4355-a651-1a8daef84550",
+          "mashups": [],
+          "playlists": [],
+          "alterEgos": [],
+          "alterEgosIds": []
       }
       ```
 
       ---
 
       **[ID] RegEx**: `{UUID RegEx}`
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[V]</b> Зарегистрировать альтер-эго: <code>[POST] /register/alter_ego?name=[USERNAME]</code></summary>
+
+      <br>
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если альтер-эго было зарегистрировано
+      * `400 Bad Request`
+        * Если отправлен некорректный никнейм
+
+      ---
+
+      **Пример ответа:**
+      ```json
+      {
+          "id": 100,
+          "username": "AlterEgo",
+          "imageUrl": "default",
+          "backgroundColor": 16777215,
+          "permissions": 0,
+          "token": "d404f899-eac6-4355-a651-1a8daef84550",
+          "mashups": [],
+          "playlists": [],
+          "alterEgos": [],
+          "alterEgosIds": []
+      }
+      ```
+
+      ---
+
+      **[username] RegEx**: `(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{2,32}$)(?!^\d+$)^.+$`
+
+      ---
+    </details>
+  * <details>
+      <summary>Авторизация альтер-эго: <code>[POST] /login/alter_ego?name=[USERNAME]</code></summary>
+
+      <br>
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если альтер-эго было зарегистрировано
+      * `400 Bad Request`
+        * Если отправлен некорректный никнейм
+
+      ---
+
+      **Пример ответа:**
+      ```json
+      {
+          "id": 100,
+          "username": "AlterEgo",
+          "imageUrl": "default",
+          "backgroundColor": 16777215,
+          "permissions": 0,
+          "token": "d404f899-eac6-4355-a651-1a8daef84550",
+          "mashups": [],
+          "playlists": [],
+          "alterEgos": [],
+          "alterEgosIds": []
+      }
+      ```
+
+      ---
+
+      **[username] RegEx**: `(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{2,32}$)(?!^\d+$)^.+$`
 
       ---
     </details>
@@ -416,7 +498,9 @@
               1,
               2,
               3
-          ]
+          ],
+          "alterEgos": [],
+          "alterEgosIds": []
       }
       ```
 
@@ -467,7 +551,9 @@
                   1,
                   2,
                   3
-              ]
+              ],
+              "alterEgos": [],
+              "alterEgosIds": []
           },
           {
               "id": 2,
@@ -481,7 +567,13 @@
                   3,
                   4
               ],
-              "playlist": []
+              "playlists": [],
+              "alterEgos": [
+                  "MdinoeL"
+              ],
+              "alterEgosIds": [
+                  3
+              ]
           }
       ]
       ```
@@ -597,7 +689,9 @@
               1,
               2,
               3
-          ]
+          ],
+          "alterEgos": [],
+          "alterEgosIds": []
       }
       ```
 
@@ -1571,6 +1665,25 @@
 
       ---
     </details>
+  * <details>
+      <summary><b>[T]</b> Получить все лайки: <code>[GET] /playlist/get_all_likes</code></summary>
+
+      <br>
+
+      ---
+
+      **Пример ответа:**
+      ```json
+      [
+          1,
+          4,
+          5,
+          8
+      ]
+      ```
+
+      ---
+    </details>
 
 
 * **Треки**:
@@ -1861,6 +1974,193 @@
 
       ---
     </details>
+  * <details>
+      <summary><b>[V]</b> Превью публикации с Spotify: <code>[POST] /track/preview/spotify?albumId=[ID]</code></summary>
+
+      <br>Возвращает сериализованный альбом в формате Spotify или пустой объект, если этот альбом уже загружен.
+
+      ---
+
+      **Пример запроса:** `/track/preview/spotify?albumId=1jcQkQcKSc21PdloFz792Y`
+
+      **Пример ответа:**
+      ```json
+      [
+          {
+              "id": "5eoeH47ABbUEbx0vNn4k4s",
+              "authors": [
+                  {
+                      "id": "7M6ERyNXeDalOonDdWWd6I",
+                      "name": "Гражданская Оборона"
+                  }
+              ],
+              "link": "https://api.spotify.com/v1/tracks/5eoeH47ABbUEbx0vNn4k4s",
+              "album": {
+                  "id": "1jcQkQcKSc21PdloFz792Y",
+                  "name": "Зачем снятся сны",
+                  "link": "https://api.spotify.com/v1/albums/1jcQkQcKSc21PdloFz792Y",
+                  "imageUrl": "https://i.scdn.co/image/ab67616d0000b273045d54f5801e148cb1afc443"
+              },
+              "name": "Слава психонавтам"
+          },
+          {
+              "id": "1K0EhvPUlGVZgHwaB2fN4G",
+              "authors": [
+                  {
+                      "id": "7M6ERyNXeDalOonDdWWd6I",
+                      "name": "Гражданская Оборона"
+                  }
+              ],
+              "link": "https://api.spotify.com/v1/tracks/1K0EhvPUlGVZgHwaB2fN4G",
+              "album": {
+                  "id": "1jcQkQcKSc21PdloFz792Y",
+                  "name": "Зачем снятся сны",
+                  "link": "https://api.spotify.com/v1/albums/1jcQkQcKSc21PdloFz792Y",
+                  "imageUrl": "https://i.scdn.co/image/ab67616d0000b273045d54f5801e148cb1afc443"
+              },
+              "name": "Кто-то другой"
+          }
+      ]
+      ```
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[V]</b> Опубликовать с Spotify: <code>[POST] /track/upload/spotify?albumId=[ID]</code></summary>
+
+      <br>Возвращает списком сериализованные треки.
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `202 Accepted`
+        * Если трек был добавлен в базу данных, но что-то пошло не так при сохранении изображении
+      * `400 Bad Request`
+        * Если некорректно указан ID
+      * `404 Not Found`
+        * Если альбом с указанным ID не найден в Spotify
+      * `409 Conflict`
+        * Если указанный альбом уже есть в базе данных
+
+      ---
+
+      **Пример запроса:** `/track/upload/spotify?albumId=1jcQkQcKSc21PdloFz792Y`
+
+      **Пример ответа:**
+      ```json
+      [
+          {
+              "id": 1,
+              "name": "Я ПЫЛЬ",
+              "authors": [
+                  "MORGENSHTERN"
+              ],
+              "authorsIds": [
+                  1
+              ],
+              "imageUrl": "1",
+              "backgroundColor": 16777215,
+              "link": "https://music.yandex.ru/album/9647864/"
+          },
+          {
+              "id": 400,
+              "name": "Спортивные очки",
+              "authors": [
+                  "Буерак"
+              ],
+              "authorsIds": [
+                  1
+              ],
+              "imageUrl": "398",
+              "backgroundColor": 16777215,
+              "link": "https://music.yandex.ru/album/5512081/"
+          }
+      ]
+      ```
+
+      ---
+
+      **[ID] RegEx**: `\d+`
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[M]</b> Получить с Spotify: <code>[GET] /track/get/spotify?id=[IDS]</code></summary>
+
+      <br>
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `400 Bad Request`
+        * Если некорректно указаны ID
+
+      ---
+
+      **Пример запроса:** `/track/get/spotify?id=0YgYOcZ8K6mnU4l4BjvOaq,1A3OSIdgOnfwphenmn2vc8`
+
+      **Пример ответа:**
+      ```json
+      [
+          {
+              "id": "0YgYOcZ8K6mnU4l4BjvOaq",
+              "authors": [
+                  {
+                      "id": "49UiD9IBopGUJrJy7kBpIm",
+                      "name": "ЗАМАЙ"
+                  }
+              ],
+              "link": "https://api.spotify.com/v1/tracks/0YgYOcZ8K6mnU4l4BjvOaq",
+              "album": {
+                  "id": "2wB5z68Vpe3j4dNyzr9xOM",
+                  "name": "Андрей",
+                  "link": "https://api.spotify.com/v1/albums/2wB5z68Vpe3j4dNyzr9xOM",
+                  "imageUrl": "https://i.scdn.co/image/ab67616d0000b273b4e2e39fed817937931d478e"
+              },
+              "name": "Замай"
+          },
+          {
+              "id": "69UYad9FknVJ9jL4kzwxeI",
+              "authors": [
+                  {
+                      "id": "49UiD9IBopGUJrJy7kBpIm",
+                      "name": "ЗАМАЙ"
+                  },
+                  {
+                      "id": "7fMhppMTr3ElTOEJqSbkEq",
+                      "name": "Слава КПСС"
+                  },
+                  {
+                      "id": "0yp6xP5xe1qarfugfTixOK",
+                      "name": "Монеточка"
+                  },
+                  {
+                      "id": "6a5dhhVg61QjA7kMDLFSqt",
+                      "name": "Овсянкин"
+                  }
+              ],
+              "link": "https://api.spotify.com/v1/tracks/69UYad9FknVJ9jL4kzwxeI",
+              "album": {
+                  "id": "6W8qCDryxaAEyIMILdUN0U",
+                  "name": "HYPE TRAIN (Mixtape)",
+                  "link": "https://api.spotify.com/v1/albums/6W8qCDryxaAEyIMILdUN0U",
+                  "imageUrl": "https://i.scdn.co/image/ab67616d0000b2739166662a5bdf1c90a3f93656"
+              },
+              "name": "Покемоны мои"
+          }
+      ]
+      ```
+
+      ---
+
+      **[IDS] RegEx**: `[a-zA-Z0-9]+(?:,[a-zA-Z0-9]+){0, 99}`
+
+      ---
+    </details>
 
 
 * **Авторы треков**:
@@ -2012,6 +2312,81 @@
                   }
               ],
               "name": "Чучело"
+          }
+      ]
+      ```
+
+      ---
+
+      **[SEARCH_QUERY] RegEx**: `.+{2,32}`
+
+      ---
+    </details>
+  * <details>
+      <summary><b>[T]</b> Треков в Spotify: <code>[GET] /track/search/spotify?query=[SEARCH_QUERY]</code></summary>
+
+      <br>Возвращает списком сериализованные треки в формате Spotify, максимум 25.
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `400 Bad Request`
+        * Если указан некорректный поисковый запрос
+
+      ---
+
+      **Пример запроса:** `/track/search/yandex_music?query=замай`
+
+      **Пример ответа:**
+      ```json
+      [
+          {
+              "id": "0YgYOcZ8K6mnU4l4BjvOaq",
+              "authors": [
+                  {
+                      "id": "49UiD9IBopGUJrJy7kBpIm",
+                      "name": "ЗАМАЙ"
+                  }
+              ],
+              "link": "https://api.spotify.com/v1/tracks/0YgYOcZ8K6mnU4l4BjvOaq",
+              "album": {
+                  "id": "2wB5z68Vpe3j4dNyzr9xOM",
+                  "name": "Андрей",
+                  "link": "https://api.spotify.com/v1/albums/2wB5z68Vpe3j4dNyzr9xOM",
+                  "imageUrl": "https://i.scdn.co/image/ab67616d0000b273b4e2e39fed817937931d478e"
+              },
+              "name": "Замай"
+          },
+          {
+              "id": "69UYad9FknVJ9jL4kzwxeI",
+              "authors": [
+                  {
+                      "id": "49UiD9IBopGUJrJy7kBpIm",
+                      "name": "ЗАМАЙ"
+                  },
+                  {
+                      "id": "7fMhppMTr3ElTOEJqSbkEq",
+                      "name": "Слава КПСС"
+                  },
+                  {
+                      "id": "0yp6xP5xe1qarfugfTixOK",
+                      "name": "Монеточка"
+                  },
+                  {
+                      "id": "6a5dhhVg61QjA7kMDLFSqt",
+                      "name": "Овсянкин"
+                  }
+              ],
+              "link": "https://api.spotify.com/v1/tracks/69UYad9FknVJ9jL4kzwxeI",
+              "album": {
+                  "id": "6W8qCDryxaAEyIMILdUN0U",
+                  "name": "HYPE TRAIN (Mixtape)",
+                  "link": "https://api.spotify.com/v1/albums/6W8qCDryxaAEyIMILdUN0U",
+                  "imageUrl": "https://i.scdn.co/image/ab67616d0000b2739166662a5bdf1c90a3f93656"
+              },
+              "name": "Покемоны мои"
           }
       ]
       ```
@@ -2220,14 +2595,22 @@
               "username": "Deephook81",
               "imageUrl": "default",
               "backgroundColor": 16777215,
-              "permissions": 0
+              "permissions": 0,
+              "mashups": [],
+              "playlists": [],
+              "alterEgos": [],
+              "alterEgosIds": []
           },
           {
               "id": 2463,
               "username": "Deep Space Audio",
               "imageUrl": "2463",
               "backgroundColor": 16777215,
-              "permissions": 76
+              "permissions": 76,
+              "mashups": [],
+              "playlists": [],
+              "alterEgos": [],
+              "alterEgosIds": []
           }
       ]
       ```
@@ -2241,6 +2624,25 @@
 
 
 * **Модерация**:
+  * <details>
+      <summary><b>[M]</b> Обновить метадату мэшапа: <code>[GET] /moderation/mashup/update_metadata</code></summary>
+
+      <br>Обновляет такую метадату как битрейт и длительность, а также конвертирует
+
+      заново оригинальный MP3 файл в другие битрейты
+
+      ---
+
+      ## Возвращаемые коды:
+      * `200 OK`
+        * Если всё хорошо и слава тебе, Господи
+      * `404 Not Found`
+        * Если неопубликованный мэшап с указанным ID не был найден
+
+      ---
+
+      ---
+    </details>
   * <details>
       <summary><b>[M]</b> Получить все неопубликованные мэшапы: <code>[GET] /moderation/unpublished_mashup/get</code></summary>
 

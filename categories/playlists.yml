@@ -248,3 +248,10 @@ requests:
         - Если всё хорошо и слава тебе, Господи
       400:
         - Если указан некорректный ID
+
+  get_all_likes:
+    mark: 'T'
+    name: 'Получить все лайки'
+    link: '[GET] /playlist/get_all_likes'
+
+    response: [1, 4, 5, 8]
